@@ -1,0 +1,16 @@
+TARGETS = apache-htcacheclean unattended-upgrades lxd lxcfs uuidd lvm2-lvmpolld open-vm-tools lvm2-lvmetad apache2 resolvconf ufw atd puppet mdadm nagios3 irqbalance ntp bacula-fd postfix plymouth open-iscsi urandom mysql iscsid sendsigs rsyslog umountnfs.sh hwclock.sh rpcbind networking umountfs cryptdisks cryptdisks-early umountroot mdadm-waitidle halt reboot
+mysql: postfix
+iscsid: open-iscsi
+sendsigs: open-iscsi unattended-upgrades mysql atd postfix lxd puppet apache2 iscsid mdadm lxcfs uuidd nagios3 plymouth open-vm-tools apache-htcacheclean irqbalance bacula-fd
+rsyslog: mysql atd postfix puppet apache2 mdadm nagios3 sendsigs apache-htcacheclean irqbalance ntp bacula-fd
+umountnfs.sh: unattended-upgrades mysql atd postfix lxd puppet apache2 lxcfs uuidd sendsigs nagios3 plymouth open-vm-tools rsyslog apache-htcacheclean irqbalance bacula-fd
+hwclock.sh: mysql atd uuidd rsyslog
+rpcbind: umountnfs.sh
+networking: open-iscsi umountnfs.sh mysql postfix puppet apache2 iscsid nagios3 rpcbind
+umountfs: open-iscsi urandom umountnfs.sh unattended-upgrades mysql atd postfix lxd puppet apache2 resolvconf iscsid mdadm lxcfs uuidd networking lvm2-lvmpolld nagios3 plymouth rpcbind open-vm-tools lvm2-lvmetad apache-htcacheclean irqbalance hwclock.sh bacula-fd
+cryptdisks: umountfs
+cryptdisks-early: cryptdisks umountfs
+umountroot: cryptdisks umountfs cryptdisks-early
+mdadm-waitidle: umountroot
+halt: umountroot mdadm-waitidle
+reboot: umountroot mdadm-waitidle

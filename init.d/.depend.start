@@ -1,0 +1,22 @@
+TARGETS = unattended-upgrades rsyslog lxd lxcfs uuidd lvm2-lvmpolld open-vm-tools lvm2-lvmetad killprocs apport apache2 single mysql atd puppet mdadm nagios3 irqbalance ntp rsync acpid dbus ssh cron bacula-fd postfix plymouth ondemand grub-common rc.local
+INTERACTIVE = apache2
+apache2: rsyslog
+single: killprocs
+mysql: rsyslog
+atd: rsyslog
+puppet: rsyslog apache2
+mdadm: rsyslog
+nagios3: rsyslog
+irqbalance: rsyslog
+ntp: rsyslog
+rsync: rsyslog
+acpid: rsyslog
+dbus: rsyslog
+ssh: rsyslog
+cron: rsyslog
+bacula-fd: rsyslog
+postfix: rsyslog mysql
+plymouth: unattended-upgrades mysql rsyslog atd postfix lxd puppet apache2 mdadm lxcfs uuidd lvm2-lvmpolld nagios3 open-vm-tools lvm2-lvmetad irqbalance ntp rsync acpid dbus ssh apport cron bacula-fd
+ondemand: unattended-upgrades mysql rsyslog atd postfix lxd puppet apache2 mdadm lxcfs uuidd lvm2-lvmpolld nagios3 open-vm-tools lvm2-lvmetad irqbalance ntp rsync acpid dbus ssh apport cron bacula-fd
+grub-common: unattended-upgrades mysql rsyslog atd postfix lxd puppet apache2 mdadm lxcfs uuidd lvm2-lvmpolld nagios3 open-vm-tools lvm2-lvmetad irqbalance ntp rsync acpid dbus ssh apport cron bacula-fd
+rc.local: unattended-upgrades mysql rsyslog atd postfix lxd puppet apache2 mdadm lxcfs uuidd lvm2-lvmpolld nagios3 open-vm-tools lvm2-lvmetad irqbalance ntp rsync acpid dbus ssh apport cron bacula-fd

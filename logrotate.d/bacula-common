@@ -1,0 +1,9 @@
+/var/log/bacula/bacula.log {
+    create 0640 bacula adm
+    compress
+    delaycompress
+    monthly
+    rotate 12
+    notifempty
+    missingok
+}
